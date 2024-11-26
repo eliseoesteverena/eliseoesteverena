@@ -9,65 +9,214 @@
 	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
 	<style>
 		html {font-size:16px;}
-		* { font-family: "DM Sans", sans-serif; font-optical-sizing: auto;font-weight: normal;font-style: normal;line-height:1.5;box-sizing:border-box;}
-		a {text-decoration: none;}
-		:root {--link-primary-color:#1798e2; --link-secondary-color:#006CA9;--main-color:#111030;--shadow-color:#0479bd80;--text-color-light:#f0f8ff;}
-		body {color: var(--main-color);}
-		h1 {font-size: 2.1rem;margin-bottom: 0px;font-weight:600; }
-        h2 {font-size: 1.2rem;margin:0 0 0.5rem;}
-        p { margin-bottom:0.5rem;}
-        a {color: var(--link-primary-color);text-decoration: none;}
-        a:hover {text-decoration: underline;}
-        main>div { margin: 1rem 0 1rem;}
-        main {width:100%;max-width:50rem;margin:0 auto;padding:1rem;}
-        .bold { font-weight: bold; }
+		* {box-sizing:border-box;font-family:"DM Sans", sans-serif;font-optical-sizing:auto;font-style:normal;font-weight:normal;line-height:1.5;}
+		*:hover {transition:all 0.1s linear;}
+		a {color:var(--link-primary-color);text-decoration:none;cursor: pointer;}
+		a:hover {text-decoration:underline;}
+		body {color:var(--main-color);}
+		h1 {font-size:2.5rem;font-weight:600;margin:0px;}
+		h2 {font-size:1.2rem;margin:0 0 0.5rem;}
+		p {margin-bottom:0.5rem;}
+		main {max-width:500px;margin:0 auto;padding:1rem;position:relative;width:100%;}
+		:root {--link-primary-color:#1798e2;--link-secondary-color:#006CA9;--main-color:#111030;--shadow-color:#0479bd80;--text-color-light:#f0f8ff;}
+		.bold {font-weight:bold;}
+		.btn-content {display: flex;align-items: center;justify-content: center;}
+		.container {display:flex;margin-top:1rem;position:relative;}
+		.container>div {width:100%;}
+		.contact form {display:flex;flex-direction:column;justify-content:baseline;max-width:100%;}
+		.contact form button {background-color:transparent;border:2px solid var(--main-color);border-radius:.6rem;color:var(--main-color);font-size:1.2rem;font-weight:600;padding:1rem;width:100%;}
+		.contact form button:hover {background-color:var(--main-color);color:#f0f8ff;cursor:pointer;}
+		.contact form input {border:0.8px solid #eee;border-radius:.6rem;font-size:1.2rem;margin-bottom:1rem;padding:1rem;}
+		.contact form label {font-weight:550;margin:.5rem 0;}
+		.contact form textarea {border:0.8px solid #eee;border-radius:.6rem;font-size:1.2rem;margin-bottom:1rem;min-height:10rem;padding:1rem;resize:none;}
+		.estudio5 {color:var(--link-primary-color);font-size:2.3rem;}
+		.footer {margin:1rem auto;}
+		.header {flex-direction:column;}
+		.header img {border-radius:900px;max-width:100px;width:100%;}
+		.home-btn {align-items:center;background-color:transparent;border:none;border-radius:10px;display:none;justify-content:center;left:0;padding:.3rem;position:absolute;top:1rem;}
+		.home-btn:hover {background-color:#f0f8ff;}
+		i {font-style:normal;}
+		main>.container:first-child {justify-content:flex-end;text-align:end;}
+		section {margin:3rem auto;}
+		section p {font-size:1.2rem;}
+		.service {font-size:1.2rem;font-weight:600;max-width:100%;min-height:3rem;width:100%;cursor: pointer;}
+		.service span {display:inline-block;padding-bottom:5px;position:relative;}
+		.service span::after {background:linear-gradient(to right, var(--main-color), var(--link-secondary-color));bottom:0;content:"";height:3px;left:0;position:absolute;width:100%;}
+		.btn {align-items:center;background-color:var(--main-color);background-image:url(whatsapp_icon.svg);background-position:10% 50%;background-repeat:no-repeat;background-size:1.5rem;border-radius:50px;box-shadow:0px 0px 5px var(--shadow-color);color:#ffffff;display:inline-flex;padding:.5rem 1.5rem .5rem 2rem;text-indent:1rem;}
+		.btn:hover {background-color:var(--link-primary-color);text-decoration:none;}
+		@media (max-width: 500px) {
+			.container:not(.header) {flex-direction:column;}
+			.btn-content {width: 100%;margin: 1rem 0 1.3rem .5rem;justify-content: flex-start}
+		}
 	</style>
 </head>
-<body>
+<body>	
 	<main>
-		<h1>Eliseo Esteverena</h1>
-		<h2>Desarrollador Web Junior</h2>
-	
-		<div class="contacto">
-			<h2>Contacto:</h2>
-			<p><span class="bold">Email:</span> <a href="mailto:eliseoesteverena@gmail.com">eliseoesteverena@gmail.com</a></p>
-			<p><span class="bold">WhatsApp:</span> <a href="https://wa.me/5491166699193" target="_blank">+54 9 11 6669 9193</a></p>
-			<p><span class="bold">GitHub:</span> <a href="https://github.com/eliseoesteverena" target="_blank">github.com/eliseoesteverena</a></p>
-		</div>
-	
-		<div class="sobre-mi">
-			<h2>Sobre mí:</h2>
-			<p>
-				Soy un <span class="bold">desarrollador web junior</span> de 29 años con experiencia en la creación de sitios y aplicaciones optimizadas para la funcionalidad y la experiencia del usuario. Trabajo tanto en <span class="bold">frontend</span> como en <span class="bold">backend</span> utilizando tecnologías como <span class="bold">HTML, CSS, JavaScript, PHP</span> y <span class="bold">MySQL</span>. Estoy comprometido con el aprendizaje continuo y busco siempre soluciones creativas e innovadoras.
-			</p>
-		</div>
-	
-		<div class="habilidades-tecnicas">
-			<h2>Habilidades Técnicas:</h2>
-			<p><span class="bold">Frontend:</span> HTML, CSS, JavaScript</p>
-			<p><span class="bold">Backend:</span> PHP, MySQL</p>
-			<p><span class="bold">Herramientas:</span> Git, Figma</p>
-			<p><span class="bold">Otros:</span> Firebase, NodeJS, Go, Docker, TailwindCSS, Kotlin</p>
-		</div>
-	
-		<div class="proyectos">
-			<h2>Proyectos Destacados (Septiembre 2024):</h2>
-			<p>
-				<a href="https://casajulita.com.ar" target="_blank">casajulita.com.ar</a><br>
-				<span class="bold">Rol:</span> Frontend & Backend<br>
-				<span class="bold">Descripción:</span> Desarrollo completo de sitio web con formulario de contacto que incluye adjuntos.
-			</p>
-			<p>
-				<a href="https://cortesmencia.art/cortesmencia" target="_blank">cortesmencia.art/cortesmencia</a><br>
-				<span class="bold">Rol:</span> Frontend & Backend<br>
-				<span class="bold">Descripción:</span> Sistema personalizado de gestión de contenidos.
-			</p>
-			<p>
-				<a href="https://generate-cd.web.app" target="_blank">generate-cd.web.app</a><br>
-				<span class="bold">Rol:</span> Frontend<br>
-				<span class="bold">Descripción:</span> Aplicación web para generar contenido imprimible con imposición específica.
-			</p>
-		</div>	
+		
+		
+			<div class="container">
+				<button id="showInitial" class="home-btn">
+					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAZJJREFUSEuVlTFOxEAMRZ+baA9ESbfSKgUSHGPPxB0ioOMgS8cF4ALQGSUzSeyMZxJS7EoTj+3//b8jAuj0A/mP7VM7LwLtwZzTFljf25Q+fVEsCHVHtVRHkDUbMqxkbuqdNinKnQi6UG0Lj6+XAlNQQOyKpl4qZkKmuS7TrfFbFBBOuZPf5qAR5IhCNjEdMIB0gj6p8BMqcKEu1OQIbeXUDPwEvCD0KF8C9wqfhgTL+KT/EoH1hG89d84D8A2cBW7JQwEPpYq8mApahAHNyYUzyq3pSGe02qRSUCcwKGvnMCa3UO0WsPTOKmpL4RV4BEbF3AEfLtzXCUGFRjORF+ANGAf8DFzT5rLXctdW8zmBG/LKu70wRfoiwnXryVjuVYrCtVEgEdDk/PrGS06OoM08eMIvoDt02XQbH8Q7x/MraK+j2dLjhx4Bsbz/46vT5wLvkQC3deoiDVx6ZHdZ2tvLrqbxYO22vwcWg+36cCJPQpWiYkYBgsIrO5wlme7YvblJApTZ6Evq5n2/EmqhoTGn4D/d/8MjDhIG0gAAAABJRU5ErkJggg==">
+				</button>
+				<div class="estudio5">&#123;estudio5&#125;</div>
+			</div>
+			<section class="page">
+			<div class="container header">
+				<img src="me.webp">
+				<h1>Eliseo Esteverena</h1>
+				<h2>Soluciones digitales</h2>
+			</div>
+			<div class="container">
+				<div>
+					<div class="service" id="serviceWeb">> <span>Desarrollo Web</span></div>
+					<div class="service" id="serviceMarca">> <span>Desarrollo de Marca</span></div>
+				</div>
+				<div class="btn-content">
+					<a class="btn" href="https://wa.me/5491166699193?text=" target="_blank">
+						<i class="w-app">
+						</i>
+						11 6669 9193
+					</a>
+				</div>
+			</div>
+			<div class="container"><i class="separator">&#32;</i></div>
+			<div class="container footer">
+				<div>
+					<a href="/" class="link">
+						<i class="page">&#32;</i>
+						eliseoesteverena.dev
+					</a>
+					<a href="mailto:contacto@eliseoesteverena.dev" class="link">
+						<i class="mail">&#32;</i>
+						contacto&#64;eliseoesteverena.dev
+					</a>
+
+				</div>
+				<div></div>
+			</div>	
+		</section>
+
 	</main>
+	<script>
+		const page = document.querySelector(".page");
+		const web = document.getElementById("serviceWeb");
+		const marca = document.getElementById("serviceMarca");
+		const homeBtn = document.querySelector(".home-btn");
+		
+
+		let initial = ` <div class="container header">
+							<img src="me.webp">
+							<h1>Eliseo Esteverena</h1>
+							<h2>Soluciones digitales</h2>
+						</div>
+						<div class="container">
+							<div>
+								<div class="service" id="serviceWeb">> <span>Desarrollo Web</span></div>
+								<div class="service" id="serviceMarca">> <span>Desarrollo de Marca</span></div>
+							</div>
+							<div style="display: flex;align-items: center;justify-content: center;">
+								<a class="btn" href="https://wa.me/5491166699193?text=" target="_blank">
+									<i class="w-app">
+									</i>
+									11 6669 9193
+								</a>
+							</div>
+						</div>
+						<div class="container"><i class="separator">&#32;</i></div>
+						<div class="container footer">
+							<div>
+								<a href="/" class="link">
+									<i class="page">&#32;</i>
+									eliseoesteverena.dev
+								</a>
+								<a href="mailto:contacto@eliseoesteverena.dev" class="link">
+									<i class="mail">&#32;</i>
+									contacto&#64;eliseoesteverena.dev
+								</a>
+
+							</div>
+							<div></div>
+						</div>`;
+		let webSection = `<section>
+								<h2>Desarrollo Web Profesional y Optimizado</h2>
+								<p>En el mundo digital, un sitio web bien diseñado marca la diferencia. Te ayudo a crear una página web que destaque, conecte con tu audiencia y cumpla tus objetivos, ya sea una tienda online, un blog, un portafolio o una web corporativa.</p>
+								<p>Cada proyecto se enfoca en ofrecer un diseño atractivo, una experiencia de usuario intuitiva y una velocidad óptima. Además, la optimización para dispositivos móviles y motores de búsqueda garantiza mayor visibilidad y posicionamiento.</p>
+								<p>Haz crecer tu negocio con una presencia en línea sólida y profesional. <a onclick="formContact()">Contáctame</a> para convertir tu idea en una realidad digital.</p>
+							</section>`;
+		let marcaSection = `<section>
+								<h2>Construcción de Marca Memorable y Única</h2>
+								<p>Una marca poderosa no es solo un logo, sino una identidad sólida que conecte con las personas. Estoy aquí para ayudarte a definir qué hace única a tu marca, cómo deseas que te perciban y qué emociones quieres generar.</p>
+								<p>La elección de colores, tipografías, mensajes y elementos gráficos se alinea con tus valores para construir una presencia memorable y relevante. Cada detalle está diseñado pensando en diferenciarte y posicionarte con fuerza en el mercado.</p>
+								<p>Empieza o renueva tu imagen con una estrategia clara y efectiva. <strong>¡Dale vida a tu marca!</strong> <a onclick="formContact()">Hablemos</a> y haz que tu identidad destaque.</p>
+							</section>`;		
+		let contactoSection = `<section class="contact">
+									<form id="my-form" action="https://formspree.io/f/mqkrwrvg" method="POST">
+										<label>Email:</label>
+										<input type="email" name="email" />
+										<label>Message:</label>
+										<textarea type="text" name="message" /></textarea>
+										<button id="my-form-button">Submit</button>
+										<p id="my-form-status"></p>
+									</form>
+								</section>`;					
+		const assignListeners = () => {
+			document.getElementById("serviceWeb").addEventListener("click", () => {
+				page.innerHTML = webSection;
+				homeBtn.style.display = "flex";
+			});
+			document.getElementById("serviceMarca").addEventListener("click", () => {
+				page.innerHTML = marcaSection;
+				homeBtn.style.display = "flex";
+			});
+		};
+
+		homeBtn.addEventListener("click", () => {
+			page.innerHTML = initial;
+			homeBtn.style.display = "none";
+			assignListeners(); // Reasignar listeners después de reemplazar el contenido
+		});
+
+		assignListeners(); // Asignar listeners al cargar la página por primera vez
+
+		
+		function formContact() {
+			document.querySelector(".page").innerHTML = contactoSection;
+			document.querySelector(".home-btn").style.display = "flex";
+		}
+	</script>
+	  <script>
+		var form = document.getElementById("my-form");
+		if(form !== null) {
+			async function handleSubmit(event) {
+				event.preventDefault();
+				var status = document.getElementById("my-form-status");
+				var data = new FormData(event.target);
+				fetch(event.target.action, {
+				method: form.method,
+				body: data,
+				headers: {
+					'Accept': 'application/json'
+				}
+				}).then(response => {
+				if (response.ok) {
+					status.innerHTML = "Thanks for your submission!";
+					form.reset()
+				} else {
+					response.json().then(data => {
+					if (Object.hasOwn(data, 'errors')) {
+						status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
+					} else {
+						status.innerHTML = "Oops! There was a problem submitting your form"
+					}
+					})
+				}
+				}).catch(error => {
+				status.innerHTML = "Oops! There was a problem submitting your form"
+				});
+			}
+			form.addEventListener("submit", handleSubmit)
+		}
+
+	  </script>
 </body>
 </html>
