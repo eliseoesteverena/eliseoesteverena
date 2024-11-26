@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">	
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <section class="contact">
+        <form action="https://api.web3forms.com/submit" method="POST">
+
+            <!-- Replace with your Access Key -->
+            <input type="hidden" name="access_key" value="ae1050c4-6541-48dd-9895-1bf5dc85abe9">
+
+            <!-- Form Inputs. Each input must have a name="" attribute -->
+            <!--label for="name">Name</label>
+            <input type="text" name="name" required-->
+            <label for="email">Email:</label>
+            <input type="email" name="email" placeholder="tu email" required>
+            
+            <label for="message">Mensaje:</label>
+            <textarea name="message" placeholder="escríbeme...te responderé a la brevedad!" required></textarea>
+
+            <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+
+            <!-- Custom Confirmation / Success Page -->
+            <input type="hidden" name="redirect" value="eliseoesteverena.dev/?m=thanks"> 
+
+            <button type="submit">Submit Form</button>
+
+        </form>
+    </section>
+</body>
+</html>

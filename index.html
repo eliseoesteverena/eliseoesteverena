@@ -3,55 +3,13 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Eliseo Esteverena - Desarrollador Junior</title>
+	<title>Eliseo Esteverena - Desarrollado Web | Desarrollo de Marca</title>
+	<meta name="description" content="" />
+	<link rel="preconnect" href="me.webp">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
-	<style>
-		html {font-size:16px;}
-		* {box-sizing:border-box;font-family:"DM Sans", sans-serif;font-optical-sizing:auto;font-style:normal;font-weight:normal;line-height:1.5;}
-		*:hover {transition:all 0.1s linear;}
-		a {color:var(--link-primary-color);text-decoration:none;cursor: pointer;}
-		a:hover {text-decoration:underline;}
-		body {color:var(--main-color);}
-		h1 {font-size:2.5rem;font-weight:600;margin:0px;}
-		h2 {font-size:1.2rem;margin:0 0 0.5rem;}
-		p {margin-bottom:0.5rem;}
-		main {max-width:500px;margin:0 auto;padding:1rem;position:relative;width:100%;}
-		:root {--link-primary-color:#1798e2;--link-secondary-color:#006CA9;--main-color:#111030;--shadow-color:#0479bd80;--text-color-light:#f0f8ff;}
-		.bold {font-weight:bold;}
-		.btn-content {display: flex;align-items: center;justify-content: center;}
-		.container {display:flex;margin-top:1rem;position:relative;}
-		.container>div {width:100%;}
-		.contact form {display:flex;flex-direction:column;justify-content:baseline;max-width:100%;}
-		.contact form button {background-color:transparent;border:2px solid var(--main-color);border-radius:.6rem;color:var(--main-color);font-size:1.2rem;font-weight:600;padding:1rem;width:100%;}
-		.contact form button:hover {background-color:var(--main-color);color:#f0f8ff;cursor:pointer;}
-		.contact form input {border:0.8px solid #eee;border-radius:.6rem;font-size:1.2rem;margin-bottom:1rem;padding:1rem;}
-		.contact form label {font-weight:550;margin:.5rem 0;}
-		.contact form textarea {border:0.8px solid #eee;border-radius:.6rem;font-size:1.2rem;margin-bottom:1rem;min-height:10rem;padding:1rem;resize:none;}
-		.estudio5 {color:var(--link-primary-color);font-size:2.3rem;}
-		.footer {margin:1rem auto;}
-		.header {flex-direction:column;}
-		.header img {border-radius:900px;max-width:100px;width:100%;}
-		.home-btn {align-items:center;background-color:transparent;border:none;border-radius:10px;display:none;justify-content:center;left:0;padding:.3rem;position:absolute;top:1rem;}
-		.home-btn:hover {background-color:#f0f8ff;}
-		i {font-style:normal;}
-		main>.container:first-child {justify-content:flex-end;text-align:end;}
-		section {margin:3rem auto;}
-		section p {font-size:1.2rem;}
-		.service {font-size:1.2rem;font-weight:600;max-width:100%;min-height:3rem;width:100%;cursor: pointer;}
-		.service span {display:inline-block;padding-bottom:5px;position:relative;}
-		.service span::after {background:linear-gradient(to right, var(--main-color), var(--link-secondary-color));bottom:0;content:"";height:3px;left:0;position:absolute;width:100%;}
-		.btn {align-items:center;background-color:var(--main-color);background-image:url(whatsapp_icon.svg);background-position:10% 50%;background-repeat:no-repeat;background-size:1.5rem;border-radius:50px;box-shadow:0px 0px 5px var(--shadow-color);color:#ffffff;display:inline-flex;padding:.5rem 1.5rem .5rem 2rem;text-indent:1rem;}
-		.btn:hover {background-color:var(--link-primary-color);text-decoration:none;}
-		.success-message { display: none; align-items: center; background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; border-radius: 5px; padding: 10px 20px; font-family: Arial, sans-serif; font-size: 16px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); max-width: 400px; margin: 10px auto; position: absolute;z-index: 2;}
-		.success-message .icon { font-size: 20px; margin-right: 10px; }
-		.success-message .message-text { flex-grow: 1; }
-		@media (max-width: 500px) {
-			.container:not(.header) {flex-direction:column;}
-			.btn-content {width: 100%;margin: 1rem 0 1.3rem .5rem;justify-content: flex-start}
-		}
-	</style>
+	<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">	
+	<link href="style.css" rel="stylesheet">
 </head>
 <body>	
 	<div class="success-message">
@@ -59,8 +17,6 @@
 		<span class="message-text">Successful. Thanks!</span>
 	</div>
 	<main>
-		
-		
 			<div class="container">
 				<button id="showInitial" class="home-btn">
 					<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAZJJREFUSEuVlTFOxEAMRZ+baA9ESbfSKgUSHGPPxB0ioOMgS8cF4ALQGSUzSeyMZxJS7EoTj+3//b8jAuj0A/mP7VM7LwLtwZzTFljf25Q+fVEsCHVHtVRHkDUbMqxkbuqdNinKnQi6UG0Lj6+XAlNQQOyKpl4qZkKmuS7TrfFbFBBOuZPf5qAR5IhCNjEdMIB0gj6p8BMqcKEu1OQIbeXUDPwEvCD0KF8C9wqfhgTL+KT/EoH1hG89d84D8A2cBW7JQwEPpYq8mApahAHNyYUzyq3pSGe02qRSUCcwKGvnMCa3UO0WsPTOKmpL4RV4BEbF3AEfLtzXCUGFRjORF+ANGAf8DFzT5rLXctdW8zmBG/LKu70wRfoiwnXryVjuVYrCtVEgEdDk/PrGS06OoM08eMIvoDt02XQbH8Q7x/MraK+j2dLjhx4Bsbz/46vT5wLvkQC3deoiDVx6ZHdZ2tvLrqbxYO22vwcWg+36cCJPQpWiYkYBgsIrO5wlme7YvblJApTZ6Evq5n2/EmqhoTGn4D/d/8MjDhIG0gAAAABJRU5ErkJggg==">
@@ -68,7 +24,7 @@
 				<div class="estudio5">&#123;estudio5&#125;</div>
 			</div>
 			<section class="page">
-			<div class="container header">
+			<!--div class="container header">
 				<img src="me.webp">
 				<h1>Eliseo Esteverena</h1>
 				<h2>Soluciones digitales</h2>
@@ -100,118 +56,9 @@
 
 				</div>
 				<div></div>
-			</div>	
+			</div-->	
 		</section>
-
 	</main>
-	<script>
-		const page = document.querySelector(".page");
-		const web = document.getElementById("serviceWeb");
-		const marca = document.getElementById("serviceMarca");
-		const homeBtn = document.querySelector(".home-btn");
-		
-
-		let initial = ` <div class="container header">
-							<img src="me.webp">
-							<h1>Eliseo Esteverena</h1>
-							<h2>Soluciones digitales</h2>
-						</div>
-						<div class="container">
-							<div>
-								<div class="service" id="serviceWeb">> <span>Desarrollo Web</span></div>
-								<div class="service" id="serviceMarca">> <span>Desarrollo de Marca</span></div>
-							</div>
-							<div style="display: flex;align-items: center;justify-content: center;">
-								<a class="btn" href="https://wa.me/5491166699193?text=" target="_blank">
-									<i class="w-app">
-									</i>
-									11 6669 9193
-								</a>
-							</div>
-						</div>
-						<div class="container"><i class="separator">&#32;</i></div>
-						<div class="container footer">
-							<div>
-								<a href="/" class="link">
-									<i class="page">&#32;</i>
-									eliseoesteverena.dev
-								</a>
-								<a href="mailto:contacto@eliseoesteverena.dev" class="link">
-									<i class="mail">&#32;</i>
-									contacto&#64;eliseoesteverena.dev
-								</a>
-
-							</div>
-							<div></div>
-						</div>`;
-		let webSection = `<section>
-								<h2>Desarrollo Web Profesional y Optimizado</h2>
-								<p>En el mundo digital, un sitio web bien diseñado marca la diferencia. Te ayudo a crear una página web que destaque, conecte con tu audiencia y cumpla tus objetivos, ya sea una tienda online, un blog, un portafolio o una web corporativa.</p>
-								<p>Cada proyecto se enfoca en ofrecer un diseño atractivo, una experiencia de usuario intuitiva y una velocidad óptima. Además, la optimización para dispositivos móviles y motores de búsqueda garantiza mayor visibilidad y posicionamiento.</p>
-								<p>Haz crecer tu negocio con una presencia en línea sólida y profesional. <a onclick="formContact()">Contáctame</a> para convertir tu idea en una realidad digital.</p>
-							</section>`;
-		let marcaSection = `<section>
-								<h2>Construcción de Marca Memorable y Única</h2>
-								<p>Una marca poderosa no es solo un logo, sino una identidad sólida que conecte con las personas. Estoy aquí para ayudarte a definir qué hace única a tu marca, cómo deseas que te perciban y qué emociones quieres generar.</p>
-								<p>La elección de colores, tipografías, mensajes y elementos gráficos se alinea con tus valores para construir una presencia memorable y relevante. Cada detalle está diseñado pensando en diferenciarte y posicionarte con fuerza en el mercado.</p>
-								<p>Empieza o renueva tu imagen con una estrategia clara y efectiva. <strong>¡Dale vida a tu marca!</strong> <a onclick="formContact()">Hablemos</a> y haz que tu identidad destaque.</p>
-							</section>`;		
-		let contactoSection = `<section class="contact">
-									<form action="https://api.web3forms.com/submit" method="POST">
-
-										<!-- Replace with your Access Key -->
-										<input type="hidden" name="access_key" value="ae1050c4-6541-48dd-9895-1bf5dc85abe9">
-
-										<!-- Form Inputs. Each input must have a name="" attribute -->
-										<input type="text" name="name" required>
-										<input type="email" name="email" required>
-										<textarea name="message" required></textarea>
-
-										<!-- Honeypot Spam Protection -->
-										<input type="checkbox" name="botcheck" class="hidden" style="display: none;">
-
-										<!-- Custom Confirmation / Success Page -->
-									    <input type="hidden" name="redirect" value="eliseoesteverena.dev/?m=thanks"> 
-
-										<button type="submit">Submit Form</button>
-
-									</form>
-								</section>`;					
-		const assignListeners = () => {
-			document.getElementById("serviceWeb").addEventListener("click", () => {
-				page.innerHTML = webSection;
-				homeBtn.style.display = "flex";
-			});
-			document.getElementById("serviceMarca").addEventListener("click", () => {
-				page.innerHTML = marcaSection;
-				homeBtn.style.display = "flex";
-			});
-		};
-
-		homeBtn.addEventListener("click", () => {
-			page.innerHTML = initial;
-			homeBtn.style.display = "none";
-			assignListeners(); // Reasignar listeners después de reemplazar el contenido
-		});
-
-		assignListeners(); // Asignar listeners al cargar la página por primera vez
-
-		
-		function formContact() {
-			document.querySelector(".page").innerHTML = contactoSection;
-			document.querySelector(".home-btn").style.display = "flex";
-		}
-	</script>
-	  <script>
-		const message = document.querySelector(".success-message");
-
-		if(window.location.search == "?m=thanks"){ 
-			message.style.display = "flex";
-			setInterval(removeNode, 3000);
-		}
-		function removeNode() {
-			message.remove()
-		}
-	  </script>
+	<script src="script.js"></script>
 </body>
 </html>
