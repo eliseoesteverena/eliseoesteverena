@@ -59,7 +59,7 @@ let contactoSection = `<iframe src="contact-frame.html"></iframe>`;
 setTimeout(() => {
     estudio.style.opacity = "1";
     page.style.opacity = "1";
-}, 100);
+}, 60);
 
 const assignListeners = () => {
     document.getElementById("serviceWeb").addEventListener("click", () => {
@@ -90,8 +90,14 @@ assignListeners(); // Asignar listeners al cargar la página por primera vez
 
 
 function formContact() {
-    document.querySelector(".page").innerHTML = contactoSection;
-    document.querySelector(".home-btn").style.display = "flex";
+    document.querySelector(".page").style.opacity = "0";
+    setTimeout(() => {
+        document.querySelector(".page").innerHTML = contactoSection;
+        document.querySelector(".page").style.opacity = "1";
+        document.querySelector(".home-btn").style.display = "flex";
+    }, 350);
+    document.body.scrollTop = 0; // For Safari
+    document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 const message = document.querySelector(".success-message");
 
