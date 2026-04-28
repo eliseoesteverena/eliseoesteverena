@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CV — Eliseo D. Esteverena</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ══════════════════════════════════════
+       VARIABLES
+    ══════════════════════════════════════ */
+    :root {
+      --navy:        #0a2540;
+      --navy-mid:    #1e3a5f;
+      --accent:      #2563eb;
+      --accent-muted:#dbeafe;
+      --gray-100:    #f1f5f9;
+      --gray-300:    #cbd5e1;
+      --gray-500:    #64748b;
+      --gray-700:    #334155;
+      --text:        #1e293b;
+      --white:       #ffffff;
+
+      --page-width:  780px;
+      --col-left:    220px;
+      --font-base:   9.5pt;
+    }
+
+    /* ══════════════════════════════════════
+       RESET & BASE
+    ══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-size: var(--font-base);
+      color: var(--text);
+      background: var(--gray-100);
+      line-height: 1.5;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    ul { list-style: none; }
+
+    /* ══════════════════════════════════════
+       PRINT BUTTON (screen only)
+    ══════════════════════════════════════ */
+    .print-bar {
+      background: var(--navy);
+      padding: .75rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .print-bar p {
+      font-size: 8.5pt;
+      color: rgba(255,255,255,.65);
+    }
+    .print-bar p strong { color: #fff; }
+    .print-bar a {
+      color: rgba(255,255,255,.65);
+      font-size: 8.5pt;
+    }
+    .print-bar a:hover { color: #fff; }
+    .btn-print {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      padding: .45rem 1.1rem;
+      border-radius: 6px;
+      font-size: 8.5pt;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      transition: background .2s;
+      text-decoration: none;
+    }
+    .btn-print:hover { background: #1d4ed8; color: #fff; }
+    .btn-print svg { width: 14px; height: 14px; }
+
+    /* ══════════════════════════════════════
+       PAGE SHELL
+    ══════════════════════════════════════ */
+    .page-wrap {
+      max-width: var(--page-width);
+      margin: 1.5rem auto 2.5rem;
+      background: var(--white);
+      box-shadow: 0 2px 24px rgba(10,37,64,.12);
+    }
+
+    /* ══════════════════════════════════════
+       HEADER
+    ══════════════════════════════════════ */
+    .cv-header {
+      background: var(--navy);
+      padding: 2rem 2.25rem 1.6rem;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .cv-header-left h1 {
+      font-size: 20pt;
+      font-weight: 700;
+      color: var(--white);
+      letter-spacing: -.01em;
+      line-height: 1.15;
+      margin-bottom: .2rem;
+    }
+    .cv-header-left .title {
+      font-size: 9.5pt;
+      color: #93c5fd;
+      font-weight: 500;
+      margin-bottom: .05rem;
+    }
+    .cv-header-right {
+      display: flex;
+      flex-direction: column;
+      gap: .35rem;
+      align-items: flex-end;
+      padding-top: .2rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      font-size: 8.5pt;
+      color: rgba(255,255,255,.8);
+    }
+    .contact-item svg { width: 11px; height: 11px; color: #93c5fd; flex-shrink: 0; }
+    .contact-item a { color: rgba(255,255,255,.8); }
+    .contact-item a:hover { color: #fff; }
+
+    /* ══════════════════════════════════════
+       BODY — two-column layout
+    ══════════════════════════════════════ */
+    .cv-body {
+      display: grid;
+      grid-template-columns: var(--col-left) 1fr;
+      min-height: 500px;
+    }
+
+    /* ── Left sidebar ─────────────────────── */
+    .cv-sidebar {
+      background: var(--gray-100);
+      border-right: 1px solid var(--gray-300);
+      padding: 1.6rem 1.25rem;
+    }
+
+    /* ── Main content ─────────────────────── */
+    .cv-main {
+      padding: 1.6rem 1.75rem;
+    }
+
+    /* ══════════════════════════════════════
+       SECTION HEADINGS
+    ══════════════════════════════════════ */
+    .sec-title {
+      font-family: 'Space Mono', monospace;
+      font-size: 7pt;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--accent);
+      border-bottom: 1.5px solid var(--accent-muted);
+      padding-bottom: .3rem;
+      margin-bottom: .85rem;
+      margin-top: 1.4rem;
+    }
+    .sec-title:first-child { margin-top: 0; }
+
+    /* ══════════════════════════════════════
+       SIDEBAR COMPONENTS
+    ══════════════════════════════════════ */
+
+    /* Skills list */
+    .skill-group { margin-bottom: 1.1rem; }
+    .skill-group-name {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: .4rem;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .3rem;
+    }
+    .skill-tag {
+      font-size: 7.5pt;
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      color: var(--gray-700);
+      padding: .1rem .45rem;
+      border-radius: 4px;
+    }
+
+    /* Tools */
+    .tool-list li {
+      font-size: 8.5pt;
+      color: var(--gray-700);
+      padding: .2rem 0;
+      border-bottom: 1px solid var(--gray-300);
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+    }
+    .tool-list li:last-child { border-bottom: none; }
+    .tool-dot {
+      width: 5px; height: 5px;
+      background: var(--accent);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ══════════════════════════════════════
+       MAIN CONTENT COMPONENTS
+    ══════════════════════════════════════ */
+
+    /* Summary */
+    .summary-text {
+      font-size: 8.75pt;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    /* Experience / project entries */
+    .entry { margin-bottom: 1.1rem; }
+    .entry:last-child { margin-bottom: 0; }
+
+    .entry-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: .5rem;
+      margin-bottom: .2rem;
+    }
+    .entry-title {
+      font-size: 9pt;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1.3;
+    }
+    .entry-meta {
+      font-size: 7.5pt;
+      color: var(--gray-500);
+      font-family: 'Space Mono', monospace;
+      white-space: nowrap;
+      padding-top: .1rem;
+    }
+    .entry-sub {
+      font-size: 8pt;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: .3rem;
+    }
+    .entry-desc {
+      font-size: 8.5pt;
+      color: var(--gray-700);
+      line-height: 1.55;
+    }
+    .entry-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .25rem;
+      margin-top: .4rem;
+    }
+    .entry-tag {
+      font-size: 7pt;
+      font-family: 'Space Mono', monospace;
+      background: var(--accent-muted);
+      color: var(--accent);
+      padding: .1rem .4rem;
+      border-radius: 3px;
+      font-weight: 700;
+    }
+
+    /* Differentials */
+    .diff-entry { margin-bottom: .85rem; }
+    .diff-entry:last-child { margin-bottom: 0; }
+    .diff-title {
+      font-size: 8.75pt;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: .15rem;
+    }
+    .diff-desc {
+      font-size: 8.25pt;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    /* Quote bar */
+    .quote-bar {
+      background: var(--navy);
+      margin: 0;
+      padding: 1rem 1.75rem;
+      border-top: 2px solid var(--accent);
+    }
+    .quote-bar p {
+      font-size: 8.25pt;
+      color: rgba(255,255,255,.8);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .quote-bar p strong { color: #fff; font-style: normal; }
+
+    /* ══════════════════════════════════════
+       PRINT STYLES
+    ══════════════════════════════════════ */
+    @media print {
+      @page {
+        size: A4;
+        margin: 0;
+      }
+
+      body {
+        background: none;
+        font-size: 8.75pt;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .print-bar { display: none; }
+
+      .page-wrap {
+        max-width: 100%;
+        width: 100%;
+        margin: 0;
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+
+      .cv-header { padding: 1.5rem 1.75rem 1.25rem; }
+      .cv-body { grid-template-columns: 200px 1fr; }
+      .cv-sidebar { padding: 1.25rem 1rem; }
+      .cv-main { padding: 1.25rem 1.5rem; }
+
+      .entry { page-break-inside: avoid; }
+      .quote-bar { page-break-inside: avoid; }
+
+      a { color: inherit; text-decoration: none; }
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE (screen only)
+    ══════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .page-wrap { margin: 0; box-shadow: none; }
+      .cv-body { grid-template-columns: 1fr; }
+      .cv-sidebar { border-right: none; border-bottom: 1px solid var(--gray-300); }
+      .cv-header { flex-direction: column; }
+      .cv-header-right { align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de acción (solo pantalla) -->
+  <div class="print-bar" aria-hidden="false">
+    <div>
+      <p><strong>Eliseo D. Esteverena</strong> — Currículum Vitae</p>
+      <p><a href="index.html">← Volver al perfil</a></p>
+    </div>
+    <button class="btn-print" onclick="window.print()" aria-label="Imprimir o guardar como PDF">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+        <path fill-rule="evenodd" d="M5 4v3H4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h1v2a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-2h1a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-1V4a1 1 0 0 0-1-1H6a1 1 0 0 0-1 1Zm2 0h6v3H7V4Zm-1 9a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3H6v-3Zm8-4a1 1 0 1 0 0-2 1 1 0 0 0 0 2Z" clip-rule="evenodd"/>
+      </svg>
+      Imprimir / Guardar PDF
+    </button>
+  </div>
+
+  <!-- Hoja del CV -->
+  <div class="page-wrap" role="main">
+
+    <!-- ── CABECERA ───────────────────────────────── -->
+    <header class="cv-header">
+      <div class="cv-header-left">
+        <h1>Eliseo D. Esteverena</h1>
+        <p class="title">Desarrollador Híbrido &amp; Estratega en Optimización con IA</p>
+      </div>
+      <div class="cv-header-right" aria-label="Datos de contacto">
+        <div class="contact-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.161V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
+          <a href="mailto:eliseoesteverena@gmail.com">eliseoesteverena@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+          <a href="https://github.com/eliseoesteverena" target="_blank" rel="noopener">github.com/eliseoesteverena</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- ── CUERPO ─────────────────────────────────── -->
+    <div class="cv-body">
+
+      <!-- SIDEBAR -->
+      <aside class="cv-sidebar">
+
+        <h2 class="sec-title">Competencias</h2>
+
+        <div class="skill-group">
+          <p class="skill-group-name">Desarrollo</p>
+          <div class="skill-tags">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Python</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-name">IA &amp; Automatización</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Prompt Engineering</span>
+            <span class="skill-tag">Claude API</span>
+            <span class="skill-tag">GPT</span>
+            <span class="skill-tag">Gemini</span>
+            <span class="skill-tag">Apps Script</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-name">Datos &amp; Sistemas</p>
+          <div class="skill-tags">
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Modelado de datos</span>
+            <span class="skill-tag">Sistemas POS</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-group-name">Infraestructura</p>
+          <div class="skill-tags">
+            <span class="skill-tag">Cloudflare</span>
+            <span class="skill-tag">GitHub</span>
+            <span class="skill-tag">v0.dev</span>
+            <span class="skill-tag">Lovable</span>
+          </div>
+        </div>
+
+        <h2 class="sec-title">Herramientas</h2>
+        <ul class="tool-list">
+          <li><span class="tool-dot"></span>Google Workspace</li>
+          <li><span class="tool-dot"></span>Google Apps Script</li>
+          <li><span class="tool-dot"></span>Cloudflare Pages</li>
+          <li><span class="tool-dot"></span>GitHub / Git</li>
+          <li><span class="tool-dot"></span>v0.dev / Lovable</li>
+          <li><span class="tool-dot"></span>MySQL Workbench</li>
+        </ul>
+
+        <h2 class="sec-title">Enfoque</h2>
+        <ul class="tool-list">
+          <li><span class="tool-dot"></span>Optimización de procesos</li>
+          <li><span class="tool-dot"></span>Rentabilidad (ROI)</li>
+          <li><span class="tool-dot"></span>Experiencia de usuario</li>
+          <li><span class="tool-dot"></span>Iteración continua</li>
+          <li><span class="tool-dot"></span>Atención al cliente</li>
+        </ul>
+
+      </aside>
+
+      <!-- MAIN -->
+      <main class="cv-main">
+
+        <!-- Perfil -->
+        <h2 class="sec-title">Perfil Profesional</h2>
+        <p class="summary-text">
+          Perfil de alto impacto con capacidad única para navegar entre desarrollo de software, automatización inteligente y estrategia de negocio. Combina visión técnica end-to-end con experiencia directa en operaciones y atención al cliente, traduciendo necesidades complejas en soluciones funcionales de manera ágil y rentable.
+        </p>
+
+        <!-- Diferenciales -->
+        <h2 class="sec-title">Diferenciales Competitivos</h2>
+
+        <div class="diff-entry">
+          <p class="diff-title">Versatilidad Técnica End-to-End</p>
+          <p class="diff-desc">Diseño de modelos de datos, desarrollo de lógica de negocio y construcción de interfaces. Despliegue rápido con ecosistemas modernos (Cloudflare, GitHub, Lovable, v0).</p>
+        </div>
+
+        <div class="diff-entry">
+          <p class="diff-title">Arquitecto de Eficiencia con IA</p>
+          <p class="diff-desc">Especialista en el aprovechamiento de LLMs (Claude, GPT, Gemini) y Google Apps Script para transformar flujos de trabajo en procesos automatizados y rentables.</p>
+        </div>
+
+        <div class="diff-entry">
+          <p class="diff-title">ADN de Iteración y Agilidad</p>
+          <p class="diff-desc">Metodología basada en mejora continua: prototipado rápido, prueba y escalado de herramientas a medida en tiempo récord.</p>
+        </div>
+
+        <div class="diff-entry">
+          <p class="diff-title">Visión Orientada al Cliente</p>
+          <p class="diff-desc">Sólida experiencia en atención al cliente que permite traducir necesidades de negocio en requerimientos técnicos precisos con impacto directo en la UX.</p>
+        </div>
+
+        <!-- Proyectos / Experiencia -->
+        <h2 class="sec-title">Proyectos Destacados</h2>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Sistema POS a Medida</span>
+            <span class="entry-meta">En producción</span>
+          </div>
+          <p class="entry-sub">Desarrollo de Software · Comercio</p>
+          <p class="entry-desc">Sistema de punto de venta construido desde cero con gestión de inventario, facturación, reportes y roles de usuario. Desplegado en entorno real con operación diaria.</p>
+          <div class="entry-tags">
+            <span class="entry-tag">PHP</span>
+            <span class="entry-tag">MySQL</span>
+            <span class="entry-tag">JavaScript</span>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Automatización de Flujos con Google Workspace</span>
+            <span class="entry-meta">En producción</span>
+          </div>
+          <p class="entry-sub">Automatización IA · Productividad</p>
+          <p class="entry-desc">Integración de Sheets, Docs y Gmail con LLMs mediante Apps Script para automatizar reportes, resúmenes y notificaciones sin intervención manual.</p>
+          <div class="entry-tags">
+            <span class="entry-tag">Apps Script</span>
+            <span class="entry-tag">Gemini</span>
+            <span class="entry-tag">Google Workspace</span>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Herramienta Interna de Gestión de Proyectos</span>
+            <span class="entry-meta">En desarrollo</span>
+          </div>
+          <p class="entry-sub">Gestión · Web App</p>
+          <p class="entry-desc">Plataforma web ligera para seguimiento de tareas, asignación de responsables y visualización de avance. Diseñada para equipos pequeños sin overhead de herramientas enterprise.</p>
+          <div class="entry-tags">
+            <span class="entry-tag">Python</span>
+            <span class="entry-tag">MySQL</span>
+            <span class="entry-tag">CSS3</span>
+          </div>
+        </div>
+
+        <div class="entry">
+          <div class="entry-header">
+            <span class="entry-title">Prompt Engineering Toolkit</span>
+            <span class="entry-meta">Prototipo</span>
+          </div>
+          <p class="entry-sub">IA aplicada · Productividad</p>
+          <p class="entry-desc">Colección estructurada de prompts reutilizables y cadenas de razonamiento para Claude, GPT y Gemini orientada a casos de negocio: resúmenes, extracción de datos y generación de contenido.</p>
+          <div class="entry-tags">
+            <span class="entry-tag">Claude</span>
+            <span class="entry-tag">GPT</span>
+            <span class="entry-tag">Gemini</span>
+          </div>
+        </div>
+
+      </main>
+    </div><!-- /cv-body -->
+
+    <!-- ── QUOTE ──────────────────────────────────── -->
+    <footer class="quote-bar">
+      <p>
+        "Mi valor diferencial es la <strong>agilidad</strong>. Aporto la capacidad de prototipar, probar y escalar herramientas personalizadas que resuelven problemas operativos en tiempo récord, manteniendo siempre la <strong>rentabilidad</strong> y la <strong>experiencia del usuario</strong> como norte."
+      </p>
+    </footer>
+
+  </div><!-- /page-wrap -->
+
+</body>
+</html>
