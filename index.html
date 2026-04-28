@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Eliseo D. Esteverena — Desarrollador Híbrido & Estratega IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="m.css">
+
+  <style>
+    /* ── Palette override ─────────────────────────── */
+    :root {
+      --color-primary:       #0a2540;   /* deep navy */
+      --color-primary-light: #e8f0fe;   /* soft blue tint */
+      --color-primary-dark:  #051628;
+      --accent:              #2563eb;   /* electric blue */
+      --accent-light:        #93c5fd;
+      --accent-muted:        #dbeafe;
+      --surface:             #f8fafc;
+      --card-shadow: 0 1px 3px rgba(10,37,64,.08), 0 4px 16px rgba(10,37,64,.06);
+      --card-shadow-hover: 0 4px 12px rgba(10,37,64,.14), 0 8px 32px rgba(10,37,64,.10);
+    }
+
+    /* ── Base tweaks ──────────────────────────────── */
+    body { background-color: var(--surface); }
+
+    a { color: var(--accent); transition: color .2s; }
+    a:hover { color: var(--color-primary); text-decoration: none; }
+
+    /* ── Hero / Header ────────────────────────────── */
+    .hero {
+      background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a5f 60%, #2563eb 100%);
+      color: #fff;
+      padding: 4rem 0 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 80% 50%, rgba(37,99,235,.35) 0%, transparent 60%),
+        radial-gradient(ellipse at 10% 80%, rgba(255,255,255,.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.2);
+      color: var(--accent-light);
+      font-size: var(--font-xs);
+      font-family: 'Space Mono', monospace;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: .25rem .75rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: .5rem;
+      color: #fff;
+    }
+    .hero-subtitle {
+      font-size: var(--font-lg);
+      color: var(--accent-light);
+      margin-bottom: 1.75rem;
+      font-weight: 400;
+    }
+    .hero-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .75rem;
+      align-items: center;
+    }
+    .btn-hero {
+      display: inline-flex;
+      align-items: center;
+      gap: .45rem;
+      padding: .55rem 1.25rem;
+      border-radius: var(--radius-md);
+      font-size: var(--font-sm);
+      font-weight: 600;
+      text-decoration: none;
+      transition: all .2s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-hero-primary {
+      background: var(--accent);
+      color: #fff;
+    }
+    .btn-hero-primary:hover {
+      background: #1d4ed8;
+      color: #fff;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(37,99,235,.4);
+    }
+    .btn-hero-outline {
+      background: rgba(255,255,255,.1);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,.25);
+    }
+    .btn-hero-outline:hover {
+      background: rgba(255,255,255,.18);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* ── Section headings ─────────────────────────── */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: var(--font-xs);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--accent);
+      margin-bottom: .4rem;
+      display: block;
+    }
+    .section-title {
+      font-size: var(--font-2xl);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 1.5rem;
+    }
+
+    /* ── Cards ────────────────────────────────────── */
+    .card {
+      background: #fff;
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--card-shadow);
+      transition: box-shadow .25s, transform .25s;
+    }
+    .card:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ── Differentials grid ───────────────────────── */
+    .diff-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: var(--radius-md);
+      background: var(--accent-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: .85rem;
+      flex-shrink: 0;
+    }
+    .diff-icon svg { width: 1.25rem; height: 1.25rem; color: var(--accent); }
+    .card h3 { font-size: var(--font-lg); color: var(--color-primary); margin-bottom: .5rem; }
+    .card p { font-size: var(--font-sm); color: var(--color-gray-700); margin-bottom: 0; }
+
+    /* ── Skills table ─────────────────────────────── */
+    .skills-table { border-radius: var(--radius-lg); overflow: hidden; }
+    .skills-table thead { background: var(--color-primary); }
+    .skills-table th { color: #fff; font-weight: 600; font-size: var(--font-sm); }
+    .skills-table td { font-size: var(--font-sm); }
+    .skills-table tbody tr:hover { background: var(--accent-muted); }
+
+    /* ── Tag pills ────────────────────────────────── */
+    .tag-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .75rem; }
+    .tag {
+      display: inline-block;
+      background: var(--accent-muted);
+      color: var(--accent);
+      font-size: var(--font-xs);
+      font-weight: 600;
+      font-family: 'Space Mono', monospace;
+      padding: .2rem .65rem;
+      border-radius: 100px;
+    }
+
+    /* ── Experience items ─────────────────────────── */
+    .exp-item {
+      border-left: 2px solid var(--color-gray-200);
+      padding-left: 1.25rem;
+      position: relative;
+      margin-bottom: 1.25rem;
+    }
+    .exp-item::before {
+      content: '';
+      width: .65rem; height: .65rem;
+      background: var(--accent);
+      border-radius: 50%;
+      position: absolute;
+      left: -.37rem;
+      top: .35rem;
+    }
+    .exp-item:last-child { margin-bottom: 0; }
+    .exp-item h4 { font-size: var(--font-base); font-weight: 600; color: var(--color-primary); margin-bottom: .2rem; }
+    .exp-item p { font-size: var(--font-sm); color: var(--color-gray-700); margin-bottom: 0; }
+
+    /* ── Quote / CTA ──────────────────────────────── */
+    .quote-block {
+      background: linear-gradient(135deg, var(--color-primary) 0%, #1e3a5f 100%);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem var(--space-6);
+      position: relative;
+      overflow: hidden;
+    }
+    .quote-block::before {
+      content: '"';
+      position: absolute;
+      top: -1rem;
+      left: 1rem;
+      font-size: 8rem;
+      color: rgba(255,255,255,.06);
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+    .quote-block blockquote {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-style: normal;
+      color: #e2e8f0;
+      font-size: var(--font-lg);
+      line-height: 1.7;
+      font-weight: 400;
+      margin: 0;
+    }
+    .quote-block blockquote strong { color: #fff; font-weight: 700; }
+
+    /* ── Contact bar ──────────────────────────────── */
+    .contact-bar {
+      background: #fff;
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--card-shadow);
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: var(--font-sm);
+      font-weight: 600;
+      color: var(--color-primary);
+      text-decoration: none;
+      padding: .5rem .85rem;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-gray-200);
+      transition: all .2s;
+      background: var(--surface);
+    }
+    .contact-link:hover {
+      background: var(--accent-muted);
+      border-color: var(--accent-light);
+      color: var(--accent);
+      transform: translateY(-1px);
+    }
+    .contact-link svg { width: 1rem; height: 1rem; flex-shrink: 0; }
+
+    /* ── Footer ───────────────────────────────────── */
+    footer {
+      background: var(--color-primary);
+      color: rgba(255,255,255,.7);
+      text-align: center;
+      padding: var(--space-6) 0;
+      margin-top: 0;
+    }
+    footer p { font-size: var(--font-xs); margin-bottom: 0; }
+    footer strong { color: #fff; }
+
+    /* ── Misc ─────────────────────────────────────── */
+    main { padding: 2.5rem 0 3rem; }
+    .section-gap { margin-bottom: 2.5rem; }
+
+    /* ── Nav strip ────────────────────────────────── */
+    .nav-strip {
+      background: var(--color-primary-dark);
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+    .nav-strip-inner {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      padding: .6rem 0;
+      flex-wrap: wrap;
+    }
+    .nav-link {
+      font-size: var(--font-xs);
+      color: rgba(255,255,255,.6);
+      text-decoration: none;
+      font-family: 'Space Mono', monospace;
+      letter-spacing: .05em;
+      transition: color .2s;
+    }
+    .nav-link:hover { color: var(--accent-light); }
+
+    /* ── Project cards ────────────────────────────── */
+
+    /*
+     * CÓMO AGREGAR UN PROYECTO:
+     * Copia el bloque <article class="project-card"> completo,
+     * pégalo dentro de #proyectos .projects-grid y edita:
+     *   - data-status: "En producción" | "En desarrollo" | "Prototipo"
+     *   - .proj-type: categoría libre (IA, Web, Script…)
+     *   - h3: nombre del proyecto
+     *   - .proj-desc: descripción breve
+     *   - .tag-list: stack de tecnologías
+     *   - href en .proj-link: URL del repo o demo (o elimina el <a> si no aplica)
+     */
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 900px) {
+      .projects-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .project-card {
+      background: #fff;
+      border: 1px solid var(--color-gray-200);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--card-shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: box-shadow .25s, transform .25s;
+    }
+    .project-card:hover {
+      box-shadow: var(--card-shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    /* top accent bar — color driven by data-status */
+    .project-card::before {
+      content: '';
+      display: block;
+      height: 3px;
+      background: var(--accent);
+    }
+    .project-card[data-status="En producción"]::before  { background: #16a34a; }
+    .project-card[data-status="En desarrollo"]::before  { background: #d97706; }
+    .project-card[data-status="Prototipo"]::before      { background: var(--accent); }
+
+    .proj-body {
+      padding: var(--space-6);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .proj-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: .75rem;
+    }
+    .proj-type {
+      font-family: 'Space Mono', monospace;
+      font-size: var(--font-xs);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      color: var(--color-gray-500);
+    }
+    .proj-status {
+      font-size: var(--font-xs);
+      font-weight: 600;
+      padding: .15rem .55rem;
+      border-radius: 100px;
+    }
+    .proj-status-prod   { background: #dcfce7; color: #15803d; }
+    .proj-status-dev    { background: #fef3c7; color: #b45309; }
+    .proj-status-proto  { background: var(--accent-muted); color: var(--accent); }
+
+    .proj-body h3 {
+      font-size: var(--font-base);
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: .4rem;
+    }
+    .proj-desc {
+      font-size: var(--font-sm);
+      color: var(--color-gray-700);
+      flex: 1;
+      margin-bottom: 0;
+      line-height: 1.55;
+    }
+
+    .proj-footer {
+      padding: .85rem var(--space-6);
+      border-top: 1px solid var(--color-gray-100);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: .5rem;
+    }
+    .proj-link {
+      font-size: var(--font-xs);
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: .3rem;
+      white-space: nowrap;
+    }
+    .proj-link:hover { color: var(--color-primary); }
+    .proj-link svg { width: .85rem; height: .85rem; }
+
+    /* ── Responsive extras ────────────────────────── */
+    @media (max-width: 639px) {
+      .hero { padding: 2.5rem 0 2rem; }
+      .hero h1 { font-size: 1.85rem; }
+      main { padding: 1.75rem 0 2.5rem; }
+      .quote-block { padding: 1.75rem var(--space-4); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav strip -->
+  <div class="nav-strip">
+    <div class="container">
+      <nav class="nav-strip-inner" aria-label="Navegación secundaria">
+        <a href="#diferenciales" class="nav-link">Diferenciales</a>
+        <a href="#expertise" class="nav-link">Expertise</a>
+        <a href="#soluciones" class="nav-link">Soluciones</a>
+        <a href="#proyectos" class="nav-link">Proyectos</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero" role="banner">
+    <div class="container hero-inner">
+      <span class="hero-badge">Disponible para proyectos</span>
+      <h1>Eliseo D. Esteverena</h1>
+      <p class="hero-subtitle">Desarrollador Híbrido &amp; Estratega en Optimización con IA</p>
+      <div class="hero-links">
+        <a href="mailto:eliseoesteverena@gmail.com" class="btn-hero btn-hero-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.161V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
+          eliseoesteverena@gmail.com
+        </a>
+        <a href="https://github.com/eliseoesteverena" target="_blank" rel="noopener" class="btn-hero btn-hero-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+          github.com/eliseoesteverena
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="container">
+
+      <!-- Resumen ejecutivo -->
+      <section class="section-gap" aria-labelledby="resumen-titulo">
+        <div class="card">
+          <span class="section-label">Perfil</span>
+          <h2 id="resumen-titulo" class="section-title">Resumen Ejecutivo</h2>
+          <p>Perfil de alto impacto orientado a resultados, con una capacidad única para navegar entre el desarrollo de software de vanguardia, la automatización inteligente y la estrategia de negocio. Mi enfoque se aleja de los silos técnicos para ofrecer una visión integral: entiendo el código, entiendo el proceso operativo y entiendo las necesidades del cliente final.</p>
+        </div>
+      </section>
+
+      <!-- Diferenciales -->
+      <section id="diferenciales" class="section-gap" aria-labelledby="diferenciales-titulo">
+        <span class="section-label">Propuesta de valor</span>
+        <h2 id="diferenciales-titulo" class="section-title">Diferenciales Competitivos</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+          <article class="card">
+            <div class="diff-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M14.447 3.026a.75.75 0 0 1 .527.921l-4.5 16.5a.75.75 0 0 1-1.448-.394l4.5-16.5a.75.75 0 0 1 .921-.527ZM16.72 6.22a.75.75 0 0 1 1.06 0l5.25 5.25a.75.75 0 0 1 0 1.06l-5.25 5.25a.75.75 0 1 1-1.06-1.06L21.44 12l-4.72-4.72a.75.75 0 0 1 0-1.06Zm-9.44 0a.75.75 0 0 1 0 1.06L2.56 12l4.72 4.72a.75.75 0 0 1-1.06 1.06L.97 12.53a.75.75 0 0 1 0-1.06l5.25-5.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd"/></svg>
+            </div>
+            <h3>Versatilidad Técnica End-to-End</h3>
+            <p>Diseño de modelos de datos en MySQL, lógica en PHP/Python e interfaces ágiles con JS/CSS. Despliegue rápido con Cloudflare, GitHub, Lovable y v0.</p>
+            <div class="tag-list">
+              <span class="tag">PHP</span>
+              <span class="tag">Python</span>
+              <span class="tag">MySQL</span>
+              <span class="tag">JS/CSS</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="diff-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.5 7.5h-9v9h9v-9Z"/><path fill-rule="evenodd" d="M8.25 2.25A.75.75 0 0 1 9 3v.75h2.25V3a.75.75 0 0 1 1.5 0v.75H15V3a.75.75 0 0 1 1.5 0v.75h.75a3 3 0 0 1 3 3v.75H21A.75.75 0 0 1 21 9h-.75v2.25H21a.75.75 0 0 1 0 1.5h-.75V15H21a.75.75 0 0 1 0 1.5h-.75v.75a3 3 0 0 1-3 3h-.75V21a.75.75 0 0 1-1.5 0v-.75h-2.25V21a.75.75 0 0 1-1.5 0v-.75H9V21a.75.75 0 0 1-1.5 0v-.75h-.75a3 3 0 0 1-3-3v-.75H3A.75.75 0 0 1 3 15h.75v-2.25H3a.75.75 0 0 1 0-1.5h.75V9H3a.75.75 0 0 1 0-1.5h.75v-.75a3 3 0 0 1 3-3h.75V3a.75.75 0 0 1 .75-.75ZM6 6.75A.75.75 0 0 1 6.75 6h10.5a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75H6.75a.75.75 0 0 1-.75-.75V6.75Z" clip-rule="evenodd"/></svg>
+            </div>
+            <h3>Arquitecto de Eficiencia con IA</h3>
+            <p>Aprovechamiento de LLMs para transformar flujos de trabajo en procesos automatizados. Especialista en Google Apps Script e integración profunda con Google Workspace.</p>
+            <div class="tag-list">
+              <span class="tag">Claude</span>
+              <span class="tag">GPT</span>
+              <span class="tag">Gemini</span>
+              <span class="tag">Apps Script</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="diff-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z" clip-rule="evenodd"/></svg>
+            </div>
+            <h3>ADN de Iteración y Agilidad</h3>
+            <p>Metodología basada en mejora continua. El enfoque no se detiene en el producto final, sino en la evolución constante para maximizar rentabilidad operativa y satisfacción del usuario.</p>
+            <div class="tag-list">
+              <span class="tag">Agile</span>
+              <span class="tag">ROI</span>
+              <span class="tag">MVP</span>
+            </div>
+          </article>
+
+          <article class="card">
+            <div class="diff-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z"/></svg>
+            </div>
+            <h3>Visión Orientada al Cliente</h3>
+            <p>Sólida experiencia en atención al cliente que permite traducir necesidades complejas de negocio en requerimientos técnicos precisos, garantizando impacto positivo en la UX.</p>
+            <div class="tag-list">
+              <span class="tag">UX</span>
+              <span class="tag">CX</span>
+              <span class="tag">Negocio</span>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Expertise & Herramientas -->
+      <section id="expertise" class="section-gap" aria-labelledby="expertise-titulo">
+        <span class="section-label">Habilidades</span>
+        <h2 id="expertise-titulo" class="section-title">Áreas de Expertise</h2>
+
+        <div class="card">
+          <table class="skills-table w-full" aria-label="Tabla de competencias técnicas">
+            <thead>
+              <tr>
+                <th>Dimensión</th>
+                <th>Competencias Clave</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Desarrollo Core</strong></td>
+                <td>HTML5, CSS3, JavaScript (ES6+), PHP, Python</td>
+              </tr>
+              <tr>
+                <td><strong>IA &amp; Automatización</strong></td>
+                <td>Prompt Engineering (Claude, GPT, Gemini), Google Apps Script</td>
+              </tr>
+              <tr>
+                <td><strong>Infraestructura &amp; Prototipado</strong></td>
+                <td>Cloudflare, GitHub, v0.dev, Lovable</td>
+              </tr>
+              <tr>
+                <td><strong>Sistemas &amp; Datos</strong></td>
+                <td>Diseño de Modelos de Datos, MySQL, Sistemas POS, Gestores de Proyectos</td>
+              </tr>
+              <tr>
+                <td><strong>Gestión &amp; Estrategia</strong></td>
+                <td>Optimización de procesos, rentabilidad (ROI), atención al cliente</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Soluciones -->
+      <section id="soluciones" class="section-gap" aria-labelledby="soluciones-titulo">
+        <span class="section-label">Experiencia aplicada</span>
+        <h2 id="soluciones-titulo" class="section-title">Soluciones a Medida</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+          <article class="card">
+            <div class="diff-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M5.25 12a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75V12Zm0 3a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75V15Zm3-3a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V12Zm0 3a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V15Zm-3 3a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H6a.75.75 0 0 1-.75-.75V18Zm3 0a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H9a.75.75 0 0 1-.75-.75V18Zm3-6a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H12a.75.75 0 0 1-.75-.75V12Zm0 3a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H12a.75.75 0 0 1-.75-.75V15Zm0 3a.75.75 0 0 1 .75-.75h.008a.75.75 0 0 1 .75.75v.008a.75.75 0 0 1-.75.75H12a.75.75 0 0 1-.75-.75V18Z"/><path fill-rule="evenodd" d="M3.375 3C2.339 3 1.5 3.84 1.5 4.875v.75c0 1.036.84 1.875 1.875 1.875h17.25c1.035 0 1.875-.84 1.875-1.875v-.75C22.5 3.839 21.66 3 20.625 3H3.375Zm0 13.5h.375a1.875 1.875 0 0 0 0-3.75H3.75V18Zm0 0h.375a1.875 1.875 0 0 1 0 3.75H3.75V18Zm13.5-3.75h.375a1.875 1.875 0 0 1 0 3.75h-.375v-3.75Zm-7.5-3.75h.375a1.875 1.875 0 0 0 0-3.75H9.75v3.75Zm7.5 0h.375a1.875 1.875 0 0 0 0-3.75h-.375v3.75Z" clip-rule="evenodd"/></svg>
+            </div>
+            <h3>Desarrollo de Software</h3>
+            <p>Sistemas de Punto de Venta (POS) y herramientas de gestión de proyectos construidas a medida según las necesidades operativas del cliente.</p>
+          </article>
+
+          <article class="card">
+            <div class="diff-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M21 6.375c0 2.692-4.03 4.875-9 4.875S3 9.067 3 6.375 7.03 1.5 12 1.5s9 2.183 9 4.875Z"/><path d="M12 12.75c2.685 0 5.19-.586 7.078-1.609a8.283 8.283 0 0 0 1.897-1.384c.016.121.025.244.025.368C21 12.817 16.97 15 12 15s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.285 8.285 0 0 0 1.897 1.384C6.809 12.164 9.315 12.75 12 12.75Z"/><path d="M12 16.5c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 0 0 1.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 0 0 1.897 1.384C6.809 15.914 9.315 16.5 12 16.5Z"/><path d="M12 20.25c2.685 0 5.19-.586 7.078-1.609a8.282 8.282 0 0 0 1.897-1.384c.016.121.025.244.025.368 0 2.692-4.03 4.875-9 4.875s-9-2.183-9-4.875c0-.124.009-.247.025-.368a8.284 8.284 0 0 0 1.897 1.384C6.809 19.664 9.315 20.25 12 20.25Z"/></svg>
+            </div>
+            <h3>Manipulación de Datos</h3>
+            <p>Experiencia avanzada en diferentes tipos de manipulación, procesamiento y transformación de archivos y estructuras de datos.</p>
+          </article>
+
+          <article class="card">
+            <div class="diff-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 0 1 .359.852L12.982 9.75h7.268a.75.75 0 0 1 .548 1.262l-10.5 11.25a.75.75 0 0 1-1.272-.71l1.992-7.302H3.818a.75.75 0 0 1-.548-1.262l10.5-11.25a.75.75 0 0 1 .845-.143Z" clip-rule="evenodd"/></svg>
+            </div>
+            <h3>Optimización de Flujos</h3>
+            <p>Implementación de IA para la eliminación de cuellos de botella operativos y mejora de la productividad en procesos existentes.</p>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- Propuesta de valor / Quote -->
+      <section class="section-gap" aria-labelledby="valor-titulo">
+        <div class="quote-block">
+          <span class="section-label" style="color: var(--accent-light);" id="valor-titulo">Propuesta de Valor</span>
+          <blockquote>
+            Mi valor diferencial es la <strong>agilidad</strong>. En entornos que cambian rápidamente, aporto la capacidad de prototipar, probar y escalar herramientas personalizadas que resuelven problemas operativos en tiempo récord, manteniendo siempre la <strong>rentabilidad</strong> y la <strong>experiencia del usuario</strong> como norte.
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- ══════════════════════════════════════════
+           PROYECTOS
+           Para añadir uno nuevo: copia cualquier <article class="project-card">
+           y edita los campos marcados. Ver comentario en el CSS para referencia.
+      ═══════════════════════════════════════════ -->
+      <section id="proyectos" class="section-gap" aria-labelledby="proyectos-titulo">
+        <span class="section-label">Trabajo real</span>
+        <h2 id="proyectos-titulo" class="section-title">Proyectos</h2>
+
+        <div class="projects-grid">
+
+          <!-- PROYECTO 1 ─────────────────────────── -->
+          <article class="project-card" data-status="En producción">
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-type">Sistema POS</span>
+                <span class="proj-status proj-status-prod">En producción</span>
+              </div>
+              <h3>POS a Medida para Comercio Local</h3>
+              <p class="proj-desc">Sistema de punto de venta desarrollado desde cero: gestión de inventario, facturación, reportes y roles de usuario. Desplegado en entorno real con carga diaria.</p>
+              <div class="tag-list">
+                <span class="tag">PHP</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">JavaScript</span>
+              </div>
+            </div>
+            <div class="proj-footer">
+              <span></span><!-- placeholder para alinear si no hay link -->
+            </div>
+          </article>
+
+          <!-- PROYECTO 2 ─────────────────────────── -->
+          <article class="project-card" data-status="En producción">
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-type">Automatización IA</span>
+                <span class="proj-status proj-status-prod">En producción</span>
+              </div>
+              <h3>Automatización de Flujos con Google Workspace</h3>
+              <p class="proj-desc">Scripts en Google Apps Script que integran Sheets, Docs y Gmail con LLMs para automatizar reportes, resúmenes y notificaciones sin intervención manual.</p>
+              <div class="tag-list">
+                <span class="tag">Apps Script</span>
+                <span class="tag">Gemini</span>
+                <span class="tag">Sheets</span>
+              </div>
+            </div>
+            <div class="proj-footer">
+              <span></span>
+            </div>
+          </article>
+
+          <!-- PROYECTO 3 ─────────────────────────── -->
+          <article class="project-card" data-status="En desarrollo">
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-type">Gestor de Proyectos</span>
+                <span class="proj-status proj-status-dev">En desarrollo</span>
+              </div>
+              <h3>Herramienta Interna de Gestión de Proyectos</h3>
+              <p class="proj-desc">Plataforma web ligera para seguimiento de tareas, asignación de responsables y visualización de avance por proyecto. Pensada para equipos pequeños sin overhead.</p>
+              <div class="tag-list">
+                <span class="tag">Python</span>
+                <span class="tag">MySQL</span>
+                <span class="tag">CSS3</span>
+              </div>
+            </div>
+            <div class="proj-footer">
+              <a href="https://github.com/eliseoesteverena" target="_blank" rel="noopener" class="proj-link" aria-label="Ver repositorio en GitHub">
+                GitHub
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z"/><path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROYECTO 4 ─────────────────────────── -->
+          <article class="project-card" data-status="Prototipo">
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-type">Prototipo · IA</span>
+                <span class="proj-status proj-status-proto">Prototipo</span>
+              </div>
+              <h3>Prompt Engineering Toolkit</h3>
+              <p class="proj-desc">Colección estructurada de prompts reutilizables y cadenas de razonamiento para Claude, GPT y Gemini. Cubre casos de negocio: resúmenes, extracción de datos y generación de contenido.</p>
+              <div class="tag-list">
+                <span class="tag">Claude</span>
+                <span class="tag">GPT</span>
+                <span class="tag">Gemini</span>
+              </div>
+            </div>
+            <div class="proj-footer">
+              <a href="https://github.com/eliseoesteverena" target="_blank" rel="noopener" class="proj-link" aria-label="Ver repositorio en GitHub">
+                GitHub
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z"/><path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- PROYECTO 5 ─────────────────────────── -->
+          <article class="project-card" data-status="En producción">
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-type">Infraestructura Web</span>
+                <span class="proj-status proj-status-prod">En producción</span>
+              </div>
+              <h3>Deploy Rápido con Cloudflare + GitHub</h3>
+              <p class="proj-desc">Pipeline de despliegue continuo para proyectos estáticos y de prototipado veloz. Integra Cloudflare Pages con GitHub Actions para publicar en minutos con caché global.</p>
+              <div class="tag-list">
+                <span class="tag">Cloudflare</span>
+                <span class="tag">GitHub</span>
+                <span class="tag">CI/CD</span>
+              </div>
+            </div>
+            <div class="proj-footer">
+              <a href="https://github.com/eliseoesteverena" target="_blank" rel="noopener" class="proj-link" aria-label="Ver perfil en GitHub">
+                GitHub
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z"/><path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z"/></svg>
+              </a>
+            </div>
+          </article>
+
+          <!-- ── PLANTILLA PARA NUEVO PROYECTO ──────
+          <article class="project-card" data-status="Prototipo">
+            <div class="proj-body">
+              <div class="proj-meta">
+                <span class="proj-type">Categoría</span>
+                <span class="proj-status proj-status-proto">Prototipo</span>
+              </div>
+              <h3>Nombre del Proyecto</h3>
+              <p class="proj-desc">Descripción breve de qué hace, qué problema resuelve y cuál es el impacto.</p>
+              <div class="tag-list">
+                <span class="tag">Tech 1</span>
+                <span class="tag">Tech 2</span>
+              </div>
+            </div>
+            <div class="proj-footer">
+              <a href="#" target="_blank" rel="noopener" class="proj-link">
+                Ver proyecto
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M6.22 8.72a.75.75 0 0 0 1.06 1.06l5.22-5.22v1.69a.75.75 0 0 0 1.5 0v-3.5a.75.75 0 0 0-.75-.75h-3.5a.75.75 0 0 0 0 1.5h1.69L6.22 8.72Z"/><path d="M3.5 6.75c0-.69.56-1.25 1.25-1.25H7A.75.75 0 0 0 7 4H4.75A2.75 2.75 0 0 0 2 6.75v4.5A2.75 2.75 0 0 0 4.75 14h4.5A2.75 2.75 0 0 0 12 11.25V9a.75.75 0 0 0-1.5 0v2.25c0 .69-.56 1.25-1.25 1.25h-4.5c-.69 0-1.25-.56-1.25-1.25v-4.5Z"/></svg>
+              </a>
+            </div>
+          </article>
+          ────────────────────────────────────────── -->
+
+        </div>
+      </section>
+
+      <!-- Contacto -->
+      <section id="contacto" aria-labelledby="contacto-titulo">
+        <span class="section-label">Hablemos</span>
+        <h2 id="contacto-titulo" class="section-title">Contacto</h2>
+        <div class="contact-bar">
+          <p class="text-gray-700 mb-4">¿Tienes un proyecto o quieres explorar una colaboración? Escríbeme directamente o visita mi perfil en GitHub.</p>
+          <div class="flex flex-wrap gap-3">
+            <a href="mailto:eliseoesteverena@gmail.com" class="contact-link" aria-label="Enviar email a Eliseo">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 4a2 2 0 0 0-2 2v1.161l8.441 4.221a1.25 1.25 0 0 0 1.118 0L19 7.161V6a2 2 0 0 0-2-2H3Z"/><path d="m19 8.839-7.77 3.885a2.75 2.75 0 0 1-2.46 0L1 8.839V14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V8.839Z"/></svg>
+              eliseoesteverena@gmail.com
+            </a>
+            <a href="https://github.com/eliseoesteverena" target="_blank" rel="noopener" class="contact-link" aria-label="Ver perfil de GitHub de Eliseo">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z"/></svg>
+              github.com/eliseoesteverena
+            </a>
+          </div>
+        </div>
+      </section>
+
+    </div><!-- /container -->
+  </main>
+
+  <footer>
+    <div class="container">
+      <p><strong>Eliseo D. Esteverena</strong> · Desarrollador Híbrido &amp; Estratega IA · 2025</p>
+    </div>
+  </footer>
+
+</body>
+</html>
